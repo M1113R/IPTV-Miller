@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/IPTV-Miller/static/css/main.f855e6bc.css",
-    "main.js": "/IPTV-Miller/static/js/main.3e2ab909.js",
+    "main.js": "/IPTV-Miller/static/js/main.8a967f99.js",
     "reactPlayerYouTube.js": "/IPTV-Miller/static/js/reactPlayerYouTube.7e57b082.chunk.js",
     "reactPlayerSoundCloud.js": "/IPTV-Miller/static/js/reactPlayerSoundCloud.6b1f16d4.chunk.js",
     "reactPlayerVimeo.js": "/IPTV-Miller/static/js/reactPlayerVimeo.7c95fced.chunk.js",
@@ -17,7 +17,7 @@
     "reactPlayerPreview.js": "/IPTV-Miller/static/js/reactPlayerPreview.92eab629.chunk.js",
     "index.html": "/IPTV-Miller/index.html",
     "main.f855e6bc.css.map": "/IPTV-Miller/static/css/main.f855e6bc.css.map",
-    "main.3e2ab909.js.map": "/IPTV-Miller/static/js/main.3e2ab909.js.map",
+    "main.8a967f99.js.map": "/IPTV-Miller/static/js/main.8a967f99.js.map",
     "reactPlayerYouTube.7e57b082.chunk.js.map": "/IPTV-Miller/static/js/reactPlayerYouTube.7e57b082.chunk.js.map",
     "reactPlayerSoundCloud.6b1f16d4.chunk.js.map": "/IPTV-Miller/static/js/reactPlayerSoundCloud.6b1f16d4.chunk.js.map",
     "reactPlayerVimeo.7c95fced.chunk.js.map": "/IPTV-Miller/static/js/reactPlayerVimeo.7c95fced.chunk.js.map",
@@ -34,6 +34,6 @@
   },
   "entrypoints": [
     "static/css/main.f855e6bc.css",
-    "static/js/main.3e2ab909.js"
+    "static/js/main.8a967f99.js"
   ]
 }

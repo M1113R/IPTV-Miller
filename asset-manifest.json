@@ -1,0 +1,39 @@
+{
+  "files": {
+    "main.css": "/IPTV-Miller/static/css/main.f855e6bc.css",
+    "main.js": "/IPTV-Miller/static/js/main.3e2ab909.js",
+    "reactPlayerYouTube.js": "/IPTV-Miller/static/js/reactPlayerYouTube.7e57b082.chunk.js",
+    "reactPlayerSoundCloud.js": "/IPTV-Miller/static/js/reactPlayerSoundCloud.6b1f16d4.chunk.js",
+    "reactPlayerVimeo.js": "/IPTV-Miller/static/js/reactPlayerVimeo.7c95fced.chunk.js",
+    "reactPlayerFacebook.js": "/IPTV-Miller/static/js/reactPlayerFacebook.35eac5d0.chunk.js",
+    "reactPlayerStreamable.js": "/IPTV-Miller/static/js/reactPlayerStreamable.ffcfc906.chunk.js",
+    "reactPlayerWistia.js": "/IPTV-Miller/static/js/reactPlayerWistia.da08dd64.chunk.js",
+    "reactPlayerTwitch.js": "/IPTV-Miller/static/js/reactPlayerTwitch.a0b7c567.chunk.js",
+    "reactPlayerDailyMotion.js": "/IPTV-Miller/static/js/reactPlayerDailyMotion.fbec9da3.chunk.js",
+    "reactPlayerMixcloud.js": "/IPTV-Miller/static/js/reactPlayerMixcloud.ac315f79.chunk.js",
+    "reactPlayerVidyard.js": "/IPTV-Miller/static/js/reactPlayerVidyard.2c61fb5f.chunk.js",
+    "reactPlayerKaltura.js": "/IPTV-Miller/static/js/reactPlayerKaltura.9a9c32f6.chunk.js",
+    "reactPlayerFilePlayer.js": "/IPTV-Miller/static/js/reactPlayerFilePlayer.a86197a1.chunk.js",
+    "reactPlayerPreview.js": "/IPTV-Miller/static/js/reactPlayerPreview.92eab629.chunk.js",
+    "index.html": "/IPTV-Miller/index.html",
+    "main.f855e6bc.css.map": "/IPTV-Miller/static/css/main.f855e6bc.css.map",
+    "main.3e2ab909.js.map": "/IPTV-Miller/static/js/main.3e2ab909.js.map",
+    "reactPlayerYouTube.7e57b082.chunk.js.map": "/IPTV-Miller/static/js/reactPlayerYouTube.7e57b082.chunk.js.map",
+    "reactPlayerSoundCloud.6b1f16d4.chunk.js.map": "/IPTV-Miller/static/js/reactPlayerSoundCloud.6b1f16d4.chunk.js.map",
+    "reactPlayerVimeo.7c95fced.chunk.js.map": "/IPTV-Miller/static/js/reactPlayerVimeo.7c95fced.chunk.js.map",
+    "reactPlayerFacebook.35eac5d0.chunk.js.map": "/IPTV-Miller/static/js/reactPlayerFacebook.35eac5d0.chunk.js.map",
+    "reactPlayerStreamable.ffcfc906.chunk.js.map": "/IPTV-Miller/static/js/reactPlayerStreamable.ffcfc906.chunk.js.map",
+    "reactPlayerWistia.da08dd64.chunk.js.map": "/IPTV-Miller/static/js/reactPlayerWistia.da08dd64.chunk.js.map",
+    "reactPlayerTwitch.a0b7c567.chunk.js.map": "/IPTV-Miller/static/js/reactPlayerTwitch.a0b7c567.chunk.js.map",
+    "reactPlayerDailyMotion.fbec9da3.chunk.js.map": "/IPTV-Miller/static/js/reactPlayerDailyMotion.fbec9da3.chunk.js.map",
+    "reactPlayerMixcloud.ac315f79.chunk.js.map": "/IPTV-Miller/static/js/reactPlayerMixcloud.ac315f79.chunk.js.map",
+    "reactPlayerVidyard.2c61fb5f.chunk.js.map": "/IPTV-Miller/static/js/reactPlayerVidyard.2c61fb5f.chunk.js.map",
+    "reactPlayerKaltura.9a9c32f6.chunk.js.map": "/IPTV-Miller/static/js/reactPlayerKaltura.9a9c32f6.chunk.js.map",
+    "reactPlayerFilePlayer.a86197a1.chunk.js.map": "/IPTV-Miller/static/js/reactPlayerFilePlayer.a86197a1.chunk.js.map",
+    "reactPlayerPreview.92eab629.chunk.js.map": "/IPTV-Miller/static/js/reactPlayerPreview.92eab629.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f855e6bc.css",
+    "static/js/main.3e2ab909.js"
+  ]
+}

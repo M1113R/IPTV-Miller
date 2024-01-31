@@ -30,6 +30,11 @@ function App() {
 
       reader.read(result.data);
       var lista = reader.getResult().segments;
+
+      const listaCanais = lista.map((item) => {
+        return item.inf.title;
+      });
+
       setlistaCanais(lista);
       setCanaisFiltrados(lista);
     }
@@ -157,8 +162,8 @@ function App() {
         >
           {urlCanalEscolhido.length > 0 ? (
             <ReactPlayer
-              // height={600}
-              // width={900}
+              height={600}
+              width={900}
               autoPlay
               controls
               url={urlCanalEscolhido}

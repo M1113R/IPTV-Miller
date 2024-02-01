@@ -1,82 +1,81 @@
-import React, { useState, useEffect, PureComponent } from "react";
+import React, { useState, useEffect } from "react";
 import ReactPlayer from "react-player";
 import "./App.css";
 import axios from "axios";
-
 import Sidebar from "react-sidebar";
-
 const M3U8FileParser = require("m3u8-file-parser");
+
 const reader = new M3U8FileParser();
 
 function App() {
-  const [listaCanais, setlistaCanais] = useState([]);
-  const [urlCanalEscolhido, seturlCanalEscolhido] = useState("");
-  const [nomeCanal, setnomeCanal] = useState("");
-  const [value, setvalue] = useState("");
-  const [CanaisFiltrados, setCanaisFiltrados] = useState([]);
-  const [Height, setHeight] = useState(window.innerHeight);
-  const [Width, setWidth] = useState(window.innerWidth);
-  const [altura, setaltura] = useState(window.pageYOffset);
+  const [channelList, setChannelList] = useState([]);
+  const [chosenChannelUrl, setChosenChannelUrl] = useState("");
+  const [channelName, setChannelName] = useState("");
+  const [channelSearch, setChannelSearch] = useState("");
+  const [filteredChannels, setFilteredChannels] = useState([]);
 
   useEffect(() => {
-    async function getCanais() {
-      // const fetchData = async () => {
-      const result = await axios(
-        // 'https://iptv-org.github.io/iptv/index.category.m3u', //->>>> todos os canais
-        // 'https://iptv-org.github.io/iptv/categories/auto.m3u', //->>>> auto
-        // 'https://iptv-org.github.io/iptv/categories/documentary.m3u', // -->>>> documentary
-        "https://iptv-org.github.io/iptv/countries/br.m3u" // -->>>> brasil
-      );
-
-      reader.read(result.data);
-      var lista = reader.getResult().segments;
-
-      const listaCanais = lista.map((item) => {
-        return item.inf.title;
-      });
-
-      setlistaCanais(lista);
-      setCanaisFiltrados(lista);
-    }
-    getCanais();
+    getChannel();
   }, []);
 
-  function search() {
-    var CanaisFiltrados = listaCanais.filter(
-      (item) => item.inf.title.toLowerCase().indexOf(value.toLowerCase()) !== -1
-    );
-    // console.log(CanaisFiltrados);
-    setCanaisFiltrados(CanaisFiltrados);
-  }
+  const getChannel = async () => {
+    const result = await axios({
+      method: "get",
+      url: "https://raw.githubusercontent.com/osgioia/iptv_generator/main/plex.m3u",
+    });
 
-  function BotaoCanal({ canal }) {
+    reader.read(result.data);
+    let list = reader.getResult().segments;
+
+    list = list.sort((a, b) => {
+      if (a.inf.title < b.inf.title) {
+        return -1;
+      }
+      if (a.inf.title > b.inf.title) {
+        return 1;
+      }
+      return 0;
+    });
+
+    setChannelList(list);
+    setFilteredChannels(list);
+  };
+
+  const searchChannel = (channel) => {
+    setChannelSearch(channel);
+    const channelsFilter = channelList.filter(
+      (item) =>
+        item?.inf?.title.toLowerCase().indexOf(channel.toLowerCase()) !== -1
+    );
+
+    setFilteredChannels(channelsFilter);
+  };
+
+  const Channel = ({ canal: channel }) => {
     return (
       <div
         style={{
           alignItems: "center",
-          // flexDirection: 'row',
           margin: 10,
-          padding: 10,
-          backgroundColor: "#006414",
+          backgroundColor: "#152b46",
           borderRadius: 10,
           justifyContent: "center",
-          width: Width / 5 - 20,
+          width: window.innerWidth / 5 - 20,
           cursor: "pointer",
         }}
         onClick={() => {
-          // console.log(canal.url);
-          setnomeCanal(canal.inf.title);
-          seturlCanalEscolhido("");
+          setChannelName(channel?.inf?.title);
+          setChosenChannelUrl("");
           setTimeout(() => {
-            seturlCanalEscolhido(canal.url);
+            setChosenChannelUrl(channel.url);
           }, 500);
         }}
       >
-        {canal.inf.tvgLogo !== "" ? (
+        {channel?.inf?.tvgLogo !== "" ? (
           <img
-            alt={canal.inf.title}
+            alt={channel?.inf?.title}
             resizeMode="contain"
-            src={canal.inf.tvgLogo}
+            src={channel?.inf?.tvgLogo}
             style={{
               height: 50,
               width: 50,
@@ -96,113 +95,97 @@ function App() {
             }}
           />
         )}
-        <div style={{ fontSize: 20, cursor: "pointer" }}>{canal.inf.title}</div>
+        <div style={{ fontSize: 20, cursor: "pointer" }}>
+          {channel?.inf?.title}
+        </div>
       </div>
     );
-  }
+  };
 
   return (
     <div
       style={{
-        backgroundColor: "#003400",
+        backgroundColor: "#1f283b",
         display: "flex",
-        // flexDirection: 'row',
-        // alignItems: 'center',
         justifyContent: "space-around",
         fontSize: 20,
         color: "white",
         scrollSnapType: "mandatory",
-        // height: Height,
-        // maxHeight: Height,
-        // width: 200,
+        position: "relative",
       }}
     >
       <Sidebar
-        showVerticalScrollIndicator={false}
-        sidebar={CanaisFiltrados.map((canal) => {
-          return <BotaoCanal key={canal.inf.title} canal={canal} />;
+        sidebar={filteredChannels.map((canal) => {
+          return <Channel key={canal?.inf?.title} canal={canal} />;
         })}
-        // open={true}
         docked={true}
-        // onSetOpen={this.onSetSidebarOpen}
         styles={{
           sidebar: {
-            background: (144, 203, 44, 0.4),
-            width: Width / 5 + 30,
-            showVerticalScrollIndicator: false,
+            background: "#1f283b",
+            zIndex: 2,
             position: "absolute",
             top: 0,
-            left: 0,
-            right: 0,
             bottom: 0,
+            transition: "transform .3s ease-out",
+            WebkitTransition: "-webkit-transform .3s ease-out",
+            willChange: "transform",
+            overflowY: "auto",
           },
         }}
-      ></Sidebar>
+      />
 
       <div
         style={{
+          position: "absolute",
+          top: 0,
+          left: window.innerWidth / 5 + 30,
           display: "flex",
-          flex: 8,
-          // backgroundColor: '#ffa500',
           flexDirection: "column",
-          marginLeft: 30,
-          alignItems: "center",
-          justifyContent: "space-around",
-          height: Height,
-          marginLeft: Width / 5 + 30,
+          zIndex: 999,
         }}
       >
-        <label>IPTV Miller</label>
-        <label>{nomeCanal}</label>
+        <input
+          style={{
+            height: 30,
+            width: 250,
+            borderRadius: 10,
+            borderWidth: 0,
+            paddingLeft: 10,
+          }}
+          type="text"
+          value={channelSearch}
+          onChange={(e) => {
+            searchChannel(e.target.value);
+          }}
+          placeholder="Channel Name Search"
+        />
+      </div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          height: window.innerHeight,
+          marginLeft: window.innerWidth / 5 + 30,
+        }}
+      >
+        <div style={{ alignSelf: "center" }}>
+          <h1>M1113R IPTV</h1>
+        </div>
+        <div style={{ paddingBottom: "40px", zIndex: 999 }}>
+          <label>{channelName && `Watching: ${channelName}`}</label>
+        </div>
         <div
           style={{
             alignItems: "center",
-            // justifyContent: 'space-around',
           }}
         >
-          {urlCanalEscolhido.length > 0 ? (
-            <ReactPlayer
-              height={600}
-              width={900}
-              autoPlay
-              controls
-              url={urlCanalEscolhido}
-            />
-          ) : (
-            <div style={{ height: 600 }}>
-              <label>Escolha um canal na lista ao lado</label>
-            </div>
-          )}
-        </div>
-        <div style={{ zIndex: 999 }}>
-          <input
-            style={{
-              height: 30,
-              width: 250,
-              borderRadius: 10,
-              borderWidth: 0,
-              paddingLeft: 10,
-            }}
-            type="text"
-            value={value}
-            onChange={(e) => {
-              setvalue(e.target.value);
-            }}
-            placeholder="Digite o nome do canal:"
+          <ReactPlayer
+            height={600}
+            width={1024}
+            autoPlay
+            controls
+            url={chosenChannelUrl}
           />
-          <button
-            style={{
-              height: 30,
-              borderRadius: 10,
-              borderWidth: 0,
-              marginLeft: 5,
-              color: "white",
-              background: "#006414",
-            }}
-            onClick={() => search()}
-          >
-            Pesquisar
-          </button>
         </div>
       </div>
     </div>

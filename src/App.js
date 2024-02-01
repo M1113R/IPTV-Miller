@@ -13,6 +13,7 @@ function App() {
   const [channelName, setChannelName] = useState("");
   const [channelSearch, setChannelSearch] = useState("");
   const [filteredChannels, setFilteredChannels] = useState([]);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   useEffect(() => {
     getChannel();
@@ -118,7 +119,7 @@ function App() {
         sidebar={filteredChannels.map((canal) => {
           return <Channel key={canal?.inf?.title} canal={canal} />;
         })}
-        docked={true}
+        docked={sidebarOpen}
         styles={{
           sidebar: {
             background: "#1f283b",
@@ -132,12 +133,31 @@ function App() {
             overflowY: "auto",
           },
         }}
-      />
+      >
+        <button
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            zIndex: 999,
+            backgroundColor: "transparent",
+            borderWidth: 0,
+            color: "white",
+            fontSize: 20,
+            cursor: "pointer",
+          }}
+          onClick={() => {
+            setSidebarOpen(!sidebarOpen);
+          }}
+        >
+          {sidebarOpen ? "Close" : "Open"}
+        </button>
+      </Sidebar>
 
       <div
         style={{
           position: "absolute",
-          top: 0,
+          top: 40,
           left: window.innerWidth / 5 + 30,
           display: "flex",
           flexDirection: "column",
